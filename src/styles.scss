@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+//Add bootstrap icon css file
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+//Add base index file
+@import "assets/scss/base/index";
+
+//Add vendor index file
+@import "assets/scss/vendor/index";
+
+// Add component index file
+@import "assets/scss/component/index";
+
+// Add layout index file
+@import "assets/scss/layout/index";
+
+//Add utilities index file
+@import "assets/scss/utilities/index";

@@ -1,0 +1,28 @@
+.header {
+  // logo style
+  .logo {
+    height: 60px;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  // profile image style
+  .profile-wrapper {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .icon {
+    border-radius: 8px;
+    background-color: #f6f7fa;
+    cursor: pointer;
+  }
+}
