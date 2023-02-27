@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="row">
-      <table class="table table-striped">
+      <table class="table table-primary">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -76,11 +76,34 @@
           <tr *ngFor="let data of orderList">
             <th scope="row">{{ data.id }}</th>
             <td>
-              {{ data.userName }}
+              <img
+                src="{{ data.profileImage }}"
+                alt=""
+                class="profile-img me-3"
+              />{{ data.userName | titlecase }}
             </td>
-            <td>{{ data.dateNtime }}</td>
+            <td>
+              {{ data.dateNtime.year }}-{{ data.dateNtime.month }}-{{
+                data.dateNtime.day
+              }}
+            </td>
             <td>{{ data.price }}</td>
-            <td>{{ data.status }}</td>
+            <td>
+              <div
+                class="badge rounded-pill"
+                [ngClass]="[
+                  data.status == 'Completed'
+                    ? 'text-bg-success'
+                    : '' || data.status == 'Dispatch'
+                    ? 'text-bg-warning '
+                    : '' || data.status == 'Pending'
+                    ? 'text-bg-danger'
+                    : ''
+                ]"
+              >
+                {{ data.status }}
+              </div>
+            </td>
             <td><span class="bi bi-three-dots-vertical"></span></td>
           </tr>
         </tbody>
