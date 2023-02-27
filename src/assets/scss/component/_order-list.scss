@@ -1,0 +1,25 @@
+.order-list-wrapper {
+  .live-order {
+    .icon {
+      border-radius: 50%;
+      height: 60px;
+      width: 60px;
+      margin-right: 20px;
+      span {
+        font-size: 30px;
+      }
+    }
+    .total {
+      background-color: #ffefd3;
+      color: #feb037;
+    }
+    .pending {
+      background-color: #cbe6fd;
+      color: #027ffa;
+    }
+    .dispatch {
+      background-color: #cef1ef;
+      color: #16baac;
+    }
+  }
+}

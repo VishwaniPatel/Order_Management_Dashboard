@@ -1,1 +1,90 @@
-<p>order-list-presentation works!</p>
+<div class="order-list-wrapper h-100 p-4">
+  <div class="container">
+    <h3 class="mb-4">Live Orders</h3>
+    <div class="row gx-4 live-order mb-4">
+      <div class="col-4">
+        <div
+          class="d-flex align-items-center bg-white rounded border border-light w-100 p-4"
+        >
+          <div
+            class="total icon d-flex align-items-center justify-content-center"
+          >
+            <span class="bi bi-bag-fill"></span>
+          </div>
+          <div>
+            <h1>47</h1>
+            <p>Orders</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div
+          class="d-flex align-items-center p-4 bg-white rounded border border-light w-100"
+        >
+          <div
+            class="pending icon d-flex align-items-center justify-content-center"
+          >
+            <span class="bi bi-stopwatch-fill"></span>
+          </div>
+          <div>
+            <h1>47</h1>
+            <p>Pending Orders</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div
+          class="d-flex align-items-center p-4 bg-white rounded border border-light w-100"
+        >
+          <div
+            class="dispatch icon d-flex align-items-center justify-content-center"
+          >
+            <span class="bi bi-truck"></span>
+          </div>
+          <div>
+            <h1>47</h1>
+            <p>Total Dispatch</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+          <h1>Orders</h1>
+        </div>
+        <div>
+          <a class="btn btn-primary text-white rounded" (click)="openForm()"
+            >Add New Order
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date and time</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of orderList">
+            <th scope="row">{{ data.id }}</th>
+            <td>
+              {{ data.userName }}
+            </td>
+            <td>{{ data.dateNtime }}</td>
+            <td>{{ data.price }}</td>
+            <td>{{ data.status }}</td>
+            <td><span class="bi bi-three-dots-vertical"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

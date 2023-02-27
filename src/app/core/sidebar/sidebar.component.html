@@ -2,22 +2,24 @@
   <!-- Nav list -->
   <ul class="nav flex-column flex-nowrap flex-grow-1 overflow-auto">
     <li class="nav-item text-center px-4 py-3">
-      <a class="nav-link active d-flex position-relative">
+      <a
+        class="nav-link d-flex active position-relative"
+        (click)="openLiveOrders()"
+      >
         <span class="nav-icon me-3 bi bi-grid-1x2-fill"></span>
-        <span class="nav-text">Live Orders</span>
+        <span class="nav-text text-nowrap">Live Orders</span>
+      </a>
+    </li>
+    <li class="nav-item text-center px-4 py-3">
+      <a class="nav-link d-flex">
+        <span class="nav-icon me-3 bi bi-bag-plus-fill"></span>
+        <span class="nav-text text-nowrap">Add New Order</span>
       </a>
     </li>
     <li class="nav-item text-center px-4 py-3">
       <a class="nav-link d-flex">
         <span class="nav-icon me-3 bi bi-bag-check-fill"></span>
-        <span class="nav-text">Order History</span>
-      </a>
-    </li>
-
-    <li class="nav-item text-center px-4 py-3">
-      <a class="nav-link d-flex">
-        <span class="nav-icon me-3 bi bi-box-seam-fill"></span>
-        <span class="nav-text">Products</span>
+        <span class="nav-text text-nowrap">Order History</span>
       </a>
     </li>
     <li class="nav-item text-center px-4 py-3">

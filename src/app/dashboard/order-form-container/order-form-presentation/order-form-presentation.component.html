@@ -1,1 +1,204 @@
-<p>order-form-presentation works!</p>
+<div class="h-100 p-4 d-flex flex-column">
+  <h3 class="mb-4">Add new order</h3>
+  <div>
+    <form class="flex-grow-1" [formGroup]="orderForm" (ngSubmit)="submitForm()">
+      <div class="row mb-4">
+        <div class="col">
+          <label for="exampleFormControlInput1" class="form-label"
+            >User Name</label
+          >
+          <input
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Enter user name"
+            formControlName="userName"
+          />
+          <div
+            *ngIf="
+              validator['userName'].invalid &&
+              (isSubmited ||
+                validator['userName'].touched ||
+                validator['userName'].dirty)
+            "
+          >
+            <span
+              class="text-danger fs-7"
+              *ngIf="validator['userName'].errors?.['required']"
+              >This Field Is Required.</span
+            >
+            <span
+              class="text-danger fs-7"
+              *ngIf="validator['userName'].errors?.['pattern']"
+            >
+              First Name may contain letters only.</span
+            >
+            <span
+              class="text-danger fs-7"
+              *ngIf="validator['userName'].errors?.['maxlength'] && !(validator['userName'].errors?.['pattern'])"
+            >
+              First Name must be less than 25 characters.</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col">
+          <!-- <label for="exampleFormControlInput2" class="form-label"
+            >Date and Time</label
+          >
+          <input
+            class="form-control"
+            id="exampleFormControlInput2"
+            placeholder="Enter your last name"
+            formControlName="dateNtime"
+          /> -->
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              ngbDatepicker
+              #d="ngbDatepicker"
+              formControlName="dateNtime"
+            />
+            <button
+              class="btn btn-outline-secondary bi bi-calendar3"
+              (click)="d.toggle()"
+              type="button"
+            ></button>
+          </div>
+          <div
+            *ngIf="
+              validator['dateNtime'].invalid &&
+              (isSubmited ||
+                validator['dateNtime'].touched ||
+                validator['dateNtime'].dirty)
+            "
+          >
+            <span
+              class="text-danger fs-7"
+              *ngIf="validator['dateNtime'].errors?.['required']"
+            >
+              This Field Is Required</span
+            >
+            <span
+              class="text-danger fs-7"
+              *ngIf="validator['dateNtime'].errors?.['pattern']"
+            >
+              Last Name may contain letters only.</span
+            >
+            <span
+              class="text-danger fs-7"
+              *ngIf="validator['dateNtime'].errors?.['maxlength'] && !(validator['dateNtime'].errors?.['pattern'])"
+            >
+              Last Name must be less than 25 characters.</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col">
+          <label for="exampleFormControlInput3" class="form-label">Price</label>
+          <input
+            class="form-control"
+            id="exampleFormControlInput3"
+            placeholder="Enter price"
+            formControlName="price"
+          />
+          <div
+            *ngIf="
+              validator['price'].invalid &&
+              (isSubmited ||
+                validator['price'].touched ||
+                validator['price'].dirty)
+            "
+          >
+            <span
+              class="text-danger fs-7"
+              *ngIf="validator['price'].errors?.['required']"
+              >This Field Is Required</span
+            >
+            <span
+              class="text-danger fs-7"
+              *ngIf="validator['price'].errors?.['pattern'] && validator['price'].touched"
+            >
+              Please enter valid price.</span
+            >
+            <span
+              class="text-danger fs-7"
+              *ngIf="validator['price'].errors?.['maxlength'] && !(validator['price'].errors?.['pattern'])"
+            >
+              price must be less than 50 characters.</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col">
+          <label for="exampleFormControlInput4" class="form-label"
+            >Status</label
+          >
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            id="exampleFormControlInput4"
+            formControlName="status"
+          >
+            <option selected>------Select Status------</option>
+            <option>Pending</option>
+            <option>Dispatch</option>
+            <option>Completed</option>
+          </select>
+          <div
+            *ngIf="
+              validator['status'].invalid &&
+              (isSubmited ||
+                validator['status'].touched ||
+                validator['status'].dirty)
+            "
+          >
+            <span
+              class="text-danger"
+              *ngIf="validator['status'].errors?.['required']"
+            >
+              This Field Is Required</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 d-flex flex-column">
+          <div>
+            <label class="mb-2">Select Image</label>
+            <input
+              type="file"
+              id="file-input"
+              class="opacity-0"
+              (change)="onFileSelect($event)"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            for="file-input"
+            class="profile-wrapper cursor-pointer position-relative"
+          >
+            <div class="overflow-hidden rounded-circle profile">
+              <img src="{{ profileImage ? profileImage : base64 }}" />
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="mt-4 d-flex justify-content-end">
+        <button
+          class="btn btn-primary text-white"
+          type="submit"
+          [disabled]="orderForm.invalid"
+        >
+          Add new user
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
