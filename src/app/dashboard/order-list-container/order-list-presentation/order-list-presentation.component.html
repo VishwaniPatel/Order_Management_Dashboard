@@ -12,7 +12,7 @@
             <span class="bi bi-bag-fill"></span>
           </div>
           <div>
-            <h1>47</h1>
+            <h1>{{ total }}</h1>
             <p>Orders</p>
           </div>
         </div>
@@ -27,7 +27,7 @@
             <span class="bi bi-stopwatch-fill"></span>
           </div>
           <div>
-            <h1>47</h1>
+            <h1>{{ pending }}</h1>
             <p>Pending Orders</p>
           </div>
         </div>
@@ -42,7 +42,7 @@
             <span class="bi bi-truck"></span>
           </div>
           <div>
-            <h1>47</h1>
+            <h1>{{ dispatch }}</h1>
             <p>Total Dispatch</p>
           </div>
         </div>
@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="row">
-      <table class="table table-primary">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -87,7 +87,7 @@
                 data.dateNtime.day
               }}
             </td>
-            <td>{{ data.price }}</td>
+            <td>{{ data.price | currency : "INR" }}</td>
             <td>
               <div
                 class="badge rounded-pill"
@@ -104,7 +104,56 @@
                 {{ data.status }}
               </div>
             </td>
-            <td><span class="bi bi-three-dots-vertical"></span></td>
+            <td>
+              <div ngbDropdown>
+                <span
+                  class="bi bi-three-dots-vertical"
+                  id="dropdownBasic1"
+                  ngbDropdownToggle
+                ></span>
+                <div
+                  ngbDropdownMenu
+                  aria-labelledby="dropdownBasic1"
+                  class="dropdown-menu"
+                >
+                  <button ngbDropdownItem (click)="onEdit(data.id)">
+                    Edit
+                  </button>
+                  <button
+                    ngbDropdownItem
+                    (click)="openVerticallyCentered(content)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title">Delete?</h4>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    aria-label="Close"
+                    (click)="modal.dismiss('Cross click')"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p>Are sure you want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-light"
+                    (click)="modal.close('Close click')"
+                  >
+                    Close
+                  </button>
+                  <button class="btn btn-primary" (click)="onDelete(data.id)">
+                    Confirm
+                  </button>
+                </div>
+              </ng-template>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { orderData } from '../../order.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderFormPresenterService {
   private orderForm: Subject<orderData[]>;
@@ -23,17 +23,24 @@ export class OrderFormPresenterService {
    */
   public buildForm(): FormGroup {
     return this.formBuilder.group({
-      userName: ['', [Validators.required, Validators.maxLength(25), Validators.pattern('^[a-zA-Z]+$')]],
+      userName: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(25),
+          Validators.pattern('^[a-zA-Z]+$'),
+        ],
+      ],
       dateNtime: ['', [Validators.required, Validators.maxLength(25)]],
       price: ['', [Validators.required, Validators.maxLength(50)]],
       status: ['', [Validators.required]],
-      profileImage: ['']
+      profileImage: [''],
     });
   }
   /**
-    *convert selected file into base64 string
-    * @param event to get file path from event
-    */
+   *convert selected file into base64 string
+   * @param event to get file path from event
+   */
   public onSelectFile(event: any) {
     this.image_file = event.target.files[0];
 
@@ -46,14 +53,12 @@ export class OrderFormPresenterService {
     };
   }
   /**
- * sending form to presentation through subject
- * @param saveForm
- */
+   * sending form to presentation through subject
+   * @param saveForm
+   */
   public saveOrderData(saveForm: FormGroup) {
-    saveForm.controls['profileImage'].setValue(this.baseString)
+    saveForm.controls['profileImage'].setValue(this.baseString);
     this.orderForm.next(saveForm.value);
-    this.router.navigateByUrl('/order-list')
-    console.log(this.baseString);
-    // console.log(saveForm);
+    this.router.navigateByUrl('/order-list');
   }
 }

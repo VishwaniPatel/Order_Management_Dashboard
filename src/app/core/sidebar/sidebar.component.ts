@@ -11,4 +11,7 @@ export class SidebarComponent {
   openLiveOrders() {
     this.router.navigateByUrl('/order-list');
   }
+  addNewOrder() {
+    this.router.navigateByUrl('/order-form');
+  }
 }

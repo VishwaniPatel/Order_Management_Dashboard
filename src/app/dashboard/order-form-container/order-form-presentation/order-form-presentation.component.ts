@@ -3,8 +3,11 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  Input,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
@@ -18,12 +21,20 @@ import { OrderFormPresenterService } from '../order-form-presenter/order-form-pr
   changeDetection: ChangeDetectionStrategy.OnPush,
   viewProviders: [OrderFormPresenterService],
 })
-export class OrderFormPresentationComponent implements OnInit {
+export class OrderFormPresentationComponent implements OnInit, OnChanges {
+  @Input() patchData: any;
+  @Input() public set editOrder(value: orderData[] | null) {
+    if (value) {
+      this.orderForm.patchValue(value);
+      this.value = value;
+    }
+  }
   @Output() public submitData: EventEmitter<orderData[]>;
+  @Output() public editData: EventEmitter<orderData[]>;
   public profileImage: any;
   public orderForm: FormGroup;
   public isSubmited: boolean;
-  public _value: any;
+  public value: any;
   public base64!: string;
   // public model: NgbDateStruct;
   constructor(
@@ -32,7 +43,12 @@ export class OrderFormPresentationComponent implements OnInit {
   ) {
     this.orderForm = this.orderFormPresenterService.buildForm();
     this.submitData = new EventEmitter();
+    this.editData = new EventEmitter();
     this.isSubmited = false;
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.patchData);
+    this.orderForm.patchValue(this.patchData);
   }
   ngOnInit(): void {
     /**
@@ -40,8 +56,11 @@ export class OrderFormPresentationComponent implements OnInit {
      */
     this.orderFormPresenterService.orderForm$.subscribe((res: orderData[]) => {
       // console.log(res);
-
-      this.submitData.emit(res);
+      if (this.value) {
+        this.editData.emit(res);
+      } else {
+        this.submitData.emit(res);
+      }
     });
   }
   // geter function

@@ -3,7 +3,8 @@
   <ul class="nav flex-column flex-nowrap flex-grow-1 overflow-auto">
     <li class="nav-item text-center px-4 py-3">
       <a
-        class="nav-link d-flex active position-relative"
+        class="nav-link d-flex"
+        routerLinkActive="active-link"
         (click)="openLiveOrders()"
       >
         <span class="nav-icon me-3 bi bi-grid-1x2-fill"></span>
@@ -11,7 +12,11 @@
       </a>
     </li>
     <li class="nav-item text-center px-4 py-3">
-      <a class="nav-link d-flex">
+      <a
+        class="nav-link d-flex"
+        (click)="addNewOrder()"
+        routerLinkActive="active-link"
+      >
         <span class="nav-icon me-3 bi bi-bag-plus-fill"></span>
         <span class="nav-text text-nowrap">Add New Order</span>
       </a>

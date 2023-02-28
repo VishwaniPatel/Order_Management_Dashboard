@@ -5,14 +5,13 @@ import { orderData } from '../order.model';
 
 @Injectable()
 export class OrderService {
-
   public baseUrl: string;
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = "http://localhost:3000/orders/";
+    this.baseUrl = 'http://localhost:3000/orders/';
   }
   /**
-    * get order all data
-    */
+   * get order all data
+   */
   getOrderData(): Observable<orderData[]> {
     const url: string = this.baseUrl;
     return this.httpClient.get<orderData[]>(url);
@@ -32,7 +31,7 @@ export class OrderService {
    */
   public editeOrder(order: orderData[], id: number): Observable<orderData[]> {
     const url: string = this.baseUrl + id;
-    return this.httpClient.put<orderData[]>(url, order)
+    return this.httpClient.put<orderData[]>(url, order);
   }
 
   /**
@@ -43,5 +42,10 @@ export class OrderService {
   public deleteOrder(id: number): Observable<orderData[]> {
     const url: string = this.baseUrl + id;
     return this.httpClient.delete<orderData[]>(url);
+  }
+
+  getOrderById(id: number): Observable<orderData[]> {
+    const url: string = this.baseUrl + id;
+    return this.httpClient.get<orderData[]>(url);
   }
 }
