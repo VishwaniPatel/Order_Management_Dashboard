@@ -22,6 +22,16 @@
       color: #16baac;
     }
   }
+  tr:hover {
+    border: 1px solid grey;
+
+    box-shadow: 5px 10px 50px grey;
+  }
+  tr:hover td {
+    cursor: pointer;
+    color: $primary;
+    padding: 10px;
+  }
   .dropdown-toggle::after {
     display: none;
   }

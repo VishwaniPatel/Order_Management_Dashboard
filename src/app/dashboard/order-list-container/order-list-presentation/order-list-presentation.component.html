@@ -49,12 +49,21 @@
       </div>
     </div>
     <div class="row">
-      <div class="d-flex align-items-center justify-content-between mb-4">
+      <div class="d-flex justify-content-between mb-4">
         <div>
           <h1>Orders</h1>
         </div>
-        <div>
-          <a class="btn btn-primary text-white rounded" (click)="openForm()"
+        <div class="d-flex align-items-center">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            [(ngModel)]="searchText"
+          />
+          <a
+            class="btn btn-primary text-white rounded text-nowrap"
+            (click)="openForm()"
             >Add New Order
           </a>
         </div>
@@ -73,7 +82,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of orderList">
+          <tr *ngFor="let data of orderList | filter : searchText">
             <th scope="row">{{ data.id }}</th>
             <td>
               <img

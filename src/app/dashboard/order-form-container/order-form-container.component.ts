@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { orderData } from '../order.model';
 import { OrderService } from '../service/order.service';
@@ -11,32 +11,29 @@ import { OrderService } from '../service/order.service';
 })
 export class OrderFormContainerComponent implements OnInit {
   public id: number;
-  public editOrder$!: Observable<orderData[]>;
-  public editData: any;
+  public editOrder$!: Observable<orderData>;
 
   constructor(
+    private router: Router,
     private orderService: OrderService,
     private activatedRouter: ActivatedRoute
   ) {
     this.id = this.activatedRouter.snapshot.params['id'];
-    console.log(this.id);
   }
   ngOnInit(): void {
-    // this.editOrder$ = this.orderService.getOrderById(this.id);
-    this.getOrderById();
-    // console.log(this.editOrder$);
+    if (this.id) {
+      this.editOrder$ = this.orderService.getOrderById(this.id);
+    }
   }
-  addOrder(order: orderData[]) {
-    this.orderService.addUserData(order).subscribe((order: orderData[]) => {
-      console.log('Data added');
+  addOrder(order: orderData) {
+    this.orderService.addOrderData(order).subscribe((res) => {
+      this.router.navigateByUrl('/dashboard/order-list');
     });
   }
-  // editOrder() {
-  //   this.editData = this.orderService.editeOrder(this.id);
-  // }
-  getOrderById() {
-    this.orderService.getOrderById(this.id).subscribe((res) => {
-      this.editData = res;
+
+  editOrder(order: orderData) {
+    this.orderService.editeOrder(order, this.id).subscribe((res) => {
+      this.router.navigateByUrl('/dashboard/order-list');
     });
   }
 }

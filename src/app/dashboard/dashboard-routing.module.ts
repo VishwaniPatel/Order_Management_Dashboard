@@ -5,32 +5,33 @@ import { OrderListContainerComponent } from './order-list-container/order-list-c
 import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
-    {
+  {
+    path: '',
+    component: DashboardComponent,
+    children: [
+      {
         path: '',
-        component: DashboardComponent,
-        children: [
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: 'order-list'
-            },
-            {
-                path: 'order-list',
-                component: OrderListContainerComponent
-            },
-            {
-                path: 'order-form',
-                component: OrderFormContainerComponent
-            }, {
-                path: 'edit/:id',
-                component: OrderFormContainerComponent
-            }
-        ]
-    }
+        pathMatch: 'full',
+        redirectTo: 'order-list',
+      },
+      {
+        path: 'order-list',
+        component: OrderListContainerComponent,
+      },
+      {
+        path: 'order-form',
+        component: OrderFormContainerComponent,
+      },
+      {
+        path: 'edit/:id',
+        component: OrderFormContainerComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

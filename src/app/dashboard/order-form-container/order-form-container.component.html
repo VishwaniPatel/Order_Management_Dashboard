@@ -1,4 +1,5 @@
 <app-order-form-presentation
   (submitData)="addOrder($event)"
-  [patchData]="editData"
+  [patchData]="editOrder$ | async"
+  (editData)="editOrder($event)"
 ></app-order-form-presentation>

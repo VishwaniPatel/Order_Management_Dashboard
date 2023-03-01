@@ -26,6 +26,7 @@ export class OrderListPresentationComponent implements OnInit, OnChanges {
   public total: number;
   public pending: number;
   public dispatch: number;
+  public searchText!: string;
   @Output() public deleteOrder: EventEmitter<number> =
     new EventEmitter<number>();
 
@@ -64,10 +65,10 @@ export class OrderListPresentationComponent implements OnInit, OnChanges {
   }
 
   openForm() {
-    this.router.navigateByUrl('/order-form');
+    this.router.navigateByUrl('/dashboard/order-form');
   }
   onEdit(id: number) {
-    this.router.navigateByUrl(`/edit/${id}`);
+    this.router.navigateByUrl(`/dashboard/edit/${id}`);
   }
   onDelete(id: number) {
     this.deleteOrder.emit(id);

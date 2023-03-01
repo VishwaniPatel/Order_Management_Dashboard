@@ -4,9 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { orderData } from '../../order.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class OrderFormPresenterService {
   private orderForm: Subject<orderData[]>;
   public profileImage: Subject<any>;

@@ -8,10 +8,10 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
   constructor(private router: Router) {}
-  openLiveOrders() {
-    this.router.navigateByUrl('/order-list');
-  }
-  addNewOrder() {
-    this.router.navigateByUrl('/order-form');
-  }
+  // openLiveOrders() {
+  //   this.router.navigateByUrl('/dashboard/order-list');
+  // }
+  // addNewOrder() {
+  //   this.router.navigateByUrl('/dashboard/order-form');
+  // }
 }

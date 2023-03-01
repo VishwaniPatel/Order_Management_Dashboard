@@ -4,8 +4,8 @@
     <li class="nav-item text-center px-4 py-3">
       <a
         class="nav-link d-flex"
+        [routerLink]="['dashboard', 'order-list']"
         routerLinkActive="active-link"
-        (click)="openLiveOrders()"
       >
         <span class="nav-icon me-3 bi bi-grid-1x2-fill"></span>
         <span class="nav-text text-nowrap">Live Orders</span>
@@ -14,7 +14,7 @@
     <li class="nav-item text-center px-4 py-3">
       <a
         class="nav-link d-flex"
-        (click)="addNewOrder()"
+        [routerLink]="['dashboard', 'order-form']"
         routerLinkActive="active-link"
       >
         <span class="nav-icon me-3 bi bi-bag-plus-fill"></span>

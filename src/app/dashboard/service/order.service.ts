@@ -19,9 +19,9 @@ export class OrderService {
   /**
    * post order data
    */
-  addUserData(order: orderData[]): Observable<orderData[]> {
+  addOrderData(order: orderData): Observable<orderData> {
     const url: string = this.baseUrl;
-    return this.httpClient.post<orderData[]>(url, order);
+    return this.httpClient.post<orderData>(url, order);
   }
   /**
    * edit order data by id
@@ -29,9 +29,9 @@ export class OrderService {
    * @param id
    * @returns order
    */
-  public editeOrder(order: orderData[], id: number): Observable<orderData[]> {
+  public editeOrder(order: orderData, id: number): Observable<orderData> {
     const url: string = this.baseUrl + id;
-    return this.httpClient.put<orderData[]>(url, order);
+    return this.httpClient.put<orderData>(url, order);
   }
 
   /**
@@ -39,13 +39,13 @@ export class OrderService {
    * @param id
    * @returns order[]
    */
-  public deleteOrder(id: number): Observable<orderData[]> {
+  public deleteOrder(id: number): Observable<orderData> {
     const url: string = this.baseUrl + id;
-    return this.httpClient.delete<orderData[]>(url);
+    return this.httpClient.delete<orderData>(url);
   }
 
-  getOrderById(id: number): Observable<orderData[]> {
+  getOrderById(id: number): Observable<orderData> {
     const url: string = this.baseUrl + id;
-    return this.httpClient.get<orderData[]>(url);
+    return this.httpClient.get<orderData>(url);
   }
 }
