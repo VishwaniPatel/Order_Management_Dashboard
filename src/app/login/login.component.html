@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center align-items-center h-100">
+  <div
+    class="login-wrapper p-4 d-flex flex-column justify-content-center align-items-center"
+  >
+    <h2>Login</h2>
+    <form class="loginform" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          formControlName="userName"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && f['userName'].errors }"
+        />
+        <div
+          *ngIf="isSubmitted && f['userName'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['userName'].errors['required']">
+            Username is required
+          </div>
+        </div>
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && f['password'].errors }"
+        />
+        <div
+          *ngIf="isSubmitted && f['password'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['password'].errors['required']">
+            Password is required
+          </div>
+        </div>
+      </div>
+
+      <!-- Remember me chechbox -->
+      <div class="form-check mb-2">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="exampleCheck1"
+          formControlName="terms"
+        />
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+      </div>
+
+      <!-- Submit button -->
+
+      <div class="form-group">
+        <button class="btn btn-primary">Login</button>
+      </div>
+
+      <!-- Redirect to registration page if new user -->
+      <div class="d-flex align-items-center">
+        <div class="me-4">
+          <span>
+            New user?
+            <a routerLink="../registration" class="btn btn-link">Register</a>
+          </span>
+        </div>
+        <div>
+          <span>Forgot password</span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
