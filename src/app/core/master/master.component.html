@@ -1,8 +1,21 @@
-<div class="d-flex flex-column flex-grow-1 h-100">
+<!-- <div class="d-flex flex-column flex-grow-1 h-100">
   <header>
     <app-header></app-header>
   </header>
   <section class="flex-grow-1 overflow-auto">
     <router-outlet></router-outlet>
   </section>
+</div> -->
+<div class="d-flex flex-column h-100 w-100">
+  <header>
+    <app-header></app-header>
+  </header>
+  <main class="flex-grow-1">
+    <div class="d-flex h-100 w-100">
+      <app-sidebar></app-sidebar>
+      <div class="w-100">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </main>
 </div>
