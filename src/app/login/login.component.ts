@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../core/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +11,21 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   public loginForm: FormGroup;
   public isSubmitted: boolean;
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  public returnUrl: string;
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {
     this.loginForm = new FormGroup('');
     this.isSubmitted = false;
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      userName: ['', [Validators.required, Validators.pattern('[A-Za-z0-9]')]],
-      password: [
-        '',
-        [Validators.required, Validators.pattern('[A-Za-z0-9]{8}')],
-      ],
+      userName: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
   // convenience getter for easy access to form fields
@@ -35,5 +40,21 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       return;
     }
+
+    const username: string = this.f['userName'].value;
+    const password: string = this.f['password'].value;
+
+    this.userService.login().subscribe((data) => {
+      let user = data.find(
+        (user: any) => user.userName === username && user.password === password
+      );
+      if (user) {
+        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate([this.returnUrl]);
+      } else {
+        alert('Invalid Credentials. Try again.');
+      }
+    });
   }
 }
