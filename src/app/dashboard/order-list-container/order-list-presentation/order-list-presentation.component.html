@@ -1,6 +1,13 @@
 <div class="order-list-wrapper h-100 p-4">
   <div class="container">
-    <h3 class="mb-4">Live Orders</h3>
+    <div class="d-flex justify-content-between align-items-center">
+      <h3 class="mb-4">Live Orders</h3>
+      <a
+        class="btn btn-primary text-white rounded text-nowrap"
+        (click)="openForm()"
+        >Add New Order
+      </a>
+    </div>
     <div class="row gx-4 live-order mb-4">
       <div class="col-4">
         <div
@@ -61,11 +68,25 @@
             aria-label="Search"
             [(ngModel)]="searchText"
           />
-          <a
-            class="btn btn-primary text-white rounded text-nowrap"
-            (click)="openForm()"
-            >Add New Order
-          </a>
+          <div ngbDropdown>
+            <button
+              class="btn btn-primary"
+              id="dropdownBasic1"
+              ngbDropdownToggle
+            >
+              Filter
+            </button>
+            <div
+              ngbDropdownMenu
+              aria-labelledby="dropdownBasic1"
+              class="dropdown-menu"
+            >
+              <button ngbDropdownItem (click)="onFilter(0)">All Orders</button>
+              <button ngbDropdownItem (click)="onFilter(1)">Pending</button>
+              <button ngbDropdownItem (click)="onFilter(2)">Dispatch</button>
+              <button ngbDropdownItem (click)="onFilter(3)">Completed</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -81,7 +102,7 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="overflow-auto">
           <tr *ngFor="let data of orderList | filter : searchText">
             <th scope="row">{{ data.id }}</th>
             <td>

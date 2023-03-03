@@ -24,6 +24,7 @@ import { OrderListPresenterService } from '../order-list-presenter/order-list-pr
 export class OrderListPresentationComponent implements OnInit, OnChanges {
   public orderList: orderData[];
   public total: number;
+  public filterData: any;
   public pending: number;
   public dispatch: number;
   public searchText!: string;
@@ -55,6 +56,8 @@ export class OrderListPresentationComponent implements OnInit, OnChanges {
   @Input() public set orderData(value: orderData[] | null) {
     if (value) {
       this.orderList = value;
+      this.filterData = this.orderList;
+      // this.orderList = this.filterData;/
     }
   }
   /**
@@ -76,5 +79,25 @@ export class OrderListPresentationComponent implements OnInit, OnChanges {
   }
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
+  }
+  onFilter(id: number) {
+    if (id == 0) {
+      this.orderList = this.filterData;
+    }
+    if (id == 1) {
+      this.orderList = this.filterData.filter((res: any) => {
+        return res.status == 'Pending';
+      });
+    }
+    if (id == 2) {
+      this.orderList = this.filterData.filter((res: any) => {
+        return res.status == 'Dispatch';
+      });
+    }
+    if (id == 3) {
+      this.orderList = this.filterData.filter((res: any) => {
+        return res.status == 'Completed';
+      });
+    }
   }
 }
