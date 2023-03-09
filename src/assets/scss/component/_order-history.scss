@@ -1,0 +1,23 @@
+.order-history-wrapper {
+  .icon {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    margin-right: 20px;
+    span {
+      font-size: 30px;
+    }
+  }
+  .total {
+    background-color: #ffefd3;
+    color: #feb037;
+  }
+  .totalSale {
+    background-color: #cef2ef;
+    color: #17baad;
+  }
+  .totalDelivery {
+    background-color: #cef1ef;
+    color: #16baac;
+  }
+}

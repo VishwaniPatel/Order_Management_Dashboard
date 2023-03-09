@@ -30,7 +30,7 @@ export class OrderFormPresenterService {
         ],
       ],
       dateNtime: ['', [Validators.required, Validators.maxLength(25)]],
-      price: ['', [Validators.required, Validators.maxLength(50)]],
+      price: [, [Validators.required, Validators.maxLength(50)]],
       status: ['', [Validators.required]],
       profileImage: [''],
     });
