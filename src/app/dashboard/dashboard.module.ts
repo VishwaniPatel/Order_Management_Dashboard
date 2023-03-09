@@ -11,6 +11,8 @@ import { OrderService } from './service/order.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
+import { OrderHistoryContainerComponent } from './order-history-container/order-history-container.component';
+import { OrderHistoryPresentationComponent } from './order-history-container/order-history-presentation/order-history-presentation.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { SharedModule } from '../shared/shared.module';
     OrderListContainerComponent,
     OrderListPresentationComponent,
     DashboardComponent,
+    OrderHistoryContainerComponent,
+    OrderHistoryPresentationComponent,
   ],
   imports: [
     CommonModule,

@@ -8,11 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MasterComponent } from './master/master.component';
 import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from '../dashboard/service/auth.service';
+import { DataTransferService } from './service/data-transfer.service';
 
 @NgModule({
   declarations: [HeaderComponent, SidebarComponent, MasterComponent],
   imports: [CommonModule, RouterModule, HttpClientModule],
   exports: [HeaderComponent, SidebarComponent],
-  providers: [UserService, AuthGuard, AuthService],
+  providers: [UserService, AuthGuard, AuthService, DataTransferService],
 })
 export class CoreModule {}

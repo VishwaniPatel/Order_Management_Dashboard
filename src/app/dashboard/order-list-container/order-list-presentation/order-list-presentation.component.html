@@ -102,9 +102,11 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody class="overflow-auto">
-          <tr *ngFor="let data of orderList | filter : searchText">
-            <th scope="row">{{ data.id }}</th>
+        <tbody class="overflow-auto" style="height: 400px">
+          <tr
+            *ngFor="let data of orderList | filter : searchText; let i = index"
+          >
+            <th scope="row">{{ i }}</th>
             <td>
               <img
                 src="{{ data.profileImage }}"

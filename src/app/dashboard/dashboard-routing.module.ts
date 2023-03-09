@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OrderFormContainerComponent } from './order-form-container/order-form-container.component';
 import { OrderListContainerComponent } from './order-list-container/order-list-container.component';
 import { DashboardComponent } from './dashboard.component';
+import { OrderHistoryContainerComponent } from './order-history-container/order-history-container.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: 'edit/:id',
         component: OrderFormContainerComponent,
+      },
+      {
+        path: 'order-history',
+        component: OrderHistoryContainerComponent,
       },
     ],
   },

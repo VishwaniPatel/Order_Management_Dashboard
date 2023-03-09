@@ -11,6 +11,7 @@ import {
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { count } from 'rxjs';
+import { DataTransferService } from 'src/app/core/service/data-transfer.service';
 import { orderData } from '../../order.model';
 import { OrderListPresenterService } from '../order-list-presenter/order-list-presenter.service';
 
@@ -28,6 +29,7 @@ export class OrderListPresentationComponent implements OnInit, OnChanges {
   public pending: number;
   public dispatch: number;
   public searchText!: string;
+  public sortedColumn!: string;
   @Output() public deleteOrder: EventEmitter<number> =
     new EventEmitter<number>();
 
