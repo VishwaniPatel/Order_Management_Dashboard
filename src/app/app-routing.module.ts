@@ -34,6 +34,7 @@ const routes: Routes = [
         (m) => m.RegistrationModule
       ),
   },
+  { path: 'stepperForm', loadChildren: () => import('./stepper-form/stepper-form.module').then(m => m.StepperFormModule) },
 ];
 
 @NgModule({
