@@ -4,8 +4,8 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'sortData',
 })
 export class SortDataPipe implements PipeTransform {
-  transform(list: any, column: any): any {
-    let sortedData = list.sort((a: any, b: any) => {
+  transform(list: any[], column: any): any {
+    let sortedData = list.sort((a, b) => {
       if (a[column] > b[column]) {
         return 1;
       }

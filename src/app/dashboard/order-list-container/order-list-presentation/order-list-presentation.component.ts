@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { count } from 'rxjs';
 import { DataTransferService } from 'src/app/core/service/data-transfer.service';
 import { orderData } from '../../order.model';
 import { OrderListPresenterService } from '../order-list-presenter/order-list-presenter.service';
@@ -29,6 +28,7 @@ export class OrderListPresentationComponent implements OnInit, OnChanges {
   public pending: number;
   public dispatch: number;
   public searchText!: string;
+  public columns: string[];
   public sortedColumn!: string;
   @Output() public deleteOrder: EventEmitter<number> =
     new EventEmitter<number>();
@@ -38,10 +38,14 @@ export class OrderListPresentationComponent implements OnInit, OnChanges {
     this.orderList = [];
     this.pending = 0;
     this.dispatch = 0;
+    this.columns = [];
   }
 
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
+    this.columns = Object.keys(this.orderList[0]);
+    console.log(this.columns);
+
     this.total = this.orderList.length;
     const pendingData = this.orderList.filter((res) => {
       return res.status == 'Pending';
@@ -101,5 +105,8 @@ export class OrderListPresentationComponent implements OnInit, OnChanges {
         return res.status == 'Completed';
       });
     }
+  }
+  sortByName(name: string) {
+    this.sortedColumn = name;
   }
 }
